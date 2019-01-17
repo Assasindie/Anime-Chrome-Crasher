@@ -7,3 +7,5 @@ Usage:
 download https://www.nuget.org/packages/Discord.Net.Webhook/
 
 compile :joy:
+
+Also need to change the values in the WeebHook.cs to be your webhooks ID and Token
