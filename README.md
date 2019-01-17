@@ -7,6 +7,8 @@ Warning this program will boot itself up when you re-load up your computer. To r
 
 This is not intended for distribution or any use other than personal, however feel free to contribute :).
 
+USE AT YOUR OWN RISK.
+
 # Build:
 Clone or Fork the repo.
 
