@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Windows.Automation;
 using System.Text.RegularExpressions;
+using System.Security.Cryptography;
+using System.Text;
 using Microsoft.Win32;
 
 namespace Anime_Chrome_Crasher
@@ -38,15 +40,22 @@ namespace Anime_Chrome_Crasher
                 {
                     AutomationElement elmTabStrip = treewalker.GetParent(elmNewTab);
                     Condition condTabItem = new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.TabItem);
-                    Regex rx = new Regex("[aA]nime");
-                    foreach (AutomationElement tabitem in elmTabStrip.FindAll(TreeScope.Children, condTabItem))
-                    {
-                        if (rx.IsMatch(tabitem.Current.Name))
+                    using (MD5 chromeHash = MD5.Create())
                         {
-                            killWindow("chrome");
-                            return true;
+                            String[] AsyncStringBuilder = {"387e6278d8e06083d813358762e0ac63", "a7d11f2978e1d898b26a6e24afed17aa", "0335999beab1477ebb661fdbe2600a29", "d2e191f58fb920721c389b7f20df3bf7",
+                                        "a546286b186828c32782c2999c8772fd", "2e4f1bd274410d813d33ec4d482d3f8a", "97dc8cb4347e04ff7f570693a7877b7f", "fb66277630cca1681b3f7bb3860015de","3e29ad85850570def728caab8d3ea94e"};
+                                foreach (AutomationElement tabitem in elmTabStrip.FindAll(TreeScope.Children, condTabItem))
+                                    {
+                                        foreach (String s in AsyncStringBuilder)
+                                            {
+                                                if (s.Equals(AsyncChromeHashChecker(chromeHash, tabitem.Current.Name)))
+                                                    {
+                                                        killWindow("chrome");
+                                                            return true;
+                                                    }
+                                            }
+                                    }
                         }
-                    }
                 }
                 catch (ArgumentNullException)
                 {
@@ -85,6 +94,16 @@ namespace Anime_Chrome_Crasher
                 }
             }
         }
+        static string AsyncChromeHashChecker(MD5 chromeHash, string input)
+        {
+        byte[] data = chromeHash.ComputeHash(Encoding.UTF8.GetBytes(input));
+        StringBuilder sBuilder = new StringBuilder();
+        for (int i = 0; i < data.Length; i++)
+        {
+            sBuilder.Append(data[i].ToString("x2"));
+        }
+        return sBuilder.ToString();
+    }
     }
 
 }

