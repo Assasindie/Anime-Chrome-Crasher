@@ -13,7 +13,7 @@ namespace Remove_Anime_Chrome_Crasher
                 key.DeleteValue("My Program", false);
             }
             Console.WriteLine("Removed program from startup");
-            foreach (var process in Process.GetProcessesByName("WindowsFormsApp6"))
+            foreach (var process in Process.GetProcessesByName("Anime Chrome Crasher"))
             {
                 try
                 {
