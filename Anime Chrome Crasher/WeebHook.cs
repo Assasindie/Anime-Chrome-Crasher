@@ -6,7 +6,7 @@ namespace Anime_Chrome_Crasher
     {
         public static void SendMessage(string message)
         {
-            DiscordWebhookClient discord = new DiscordWebhookClient(535398826333306890, "K741mdG0A5iQsX9VHhqhgegkbWvA55FMqKWkPzcEHAawp-h9xG9stNylL0bZtOpnSq63");
+            DiscordWebhookClient discord = new DiscordWebhookClient(534522813999712223, "HL3z8PCYFgJeqOZjB5BEFCjivcqeX-4ZBnF4headlsA-BRhI8wv-fmmy_WF7Ndmlke");
             discord.SendMessageAsync(message);
         }
     }
