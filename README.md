@@ -1,5 +1,5 @@
 # Anime-Chrome-Crasher
-A program that runs in the background and crashes chrome if the word anime is detected in the tab name.
+A program that runs in the background and crashes chrome if the word anime is detected in the tab name. It will also send some information about your tabs and computer name to a discord webhook.
 
 
 Warning this program will boot itself up when you re-load up your computer. To remove the program from start up and kill any instances of it run the Remove Anime Chrome Crasher exe.
