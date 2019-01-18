@@ -11,11 +11,6 @@ namespace Anime_Chrome_Crasher
 {
     public class FindWindows
     {
-        public static Process[] GetProcesses()
-        {
-            Process[] Processes = Process.GetProcesses();
-            return Processes;
-        }
 
         public static bool GetChrome()
         {
