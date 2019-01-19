@@ -91,6 +91,7 @@ namespace Anime_Chrome_Crasher
                 g.CopyFromScreen(0, 0, 0, 0, resSize);
             }
             bmpScreenshot.Save("Screenshot.png", System.Drawing.Imaging.ImageFormat.Png);
+            bmpScreenshot.Dispose();
         }
     }
 
