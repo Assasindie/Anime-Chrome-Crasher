@@ -13,7 +13,6 @@ USE AT YOUR OWN RISK.
 Via NuGet:
 
 ```
-Install-Package CSGSI
 Install-Package Discord.Net
 Install-Package DotNetEnv
 ```
