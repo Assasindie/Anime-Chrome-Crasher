@@ -9,15 +9,16 @@ This is not intended for distribution or any use other than personal and is mear
 
 USE AT YOUR OWN RISK.
 
-# Build:
-Clone or Fork the repo.
+## Installation
+Via NuGet:
 
-Import the solution using Visual Studio,
+```
+Install-Package Discord.Net
+Install-Package DotNetEnv
+```
+Create .env File with the following information in the main folder
+```
+WEBHOOK_ID=
 
-Build the solution and projects. The first build will take some time as it will download all the necessary packages.
-
-Run. 
-
-If you need to close the program while testing outside of visual studio, either end via task manager or run Remove Anime Chrome Crasher.exe :)
-
-Also need to change the values in the WeebHook.cs to be your webhooks ID and Token
+WEBHOOK_TOKEN=
+```
