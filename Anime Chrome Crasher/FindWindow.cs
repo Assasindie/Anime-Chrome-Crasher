@@ -42,7 +42,7 @@ namespace Anime_Chrome_Crasher
                         {
                             string tabsOpen = "Tabs open at time of incident : ";
                             foreach (AutomationElement tab in elmTabStrip.FindAll(TreeScope.Children, condTabItem)) {
-                                tabsOpen += "| " + tab.Current.Name + " |";
+                                tabsOpen += "-- " + tab.Current.Name + " --";
                             }
                             sendDetectionMessage(tabsOpen);
                             killWindow("chrome");

