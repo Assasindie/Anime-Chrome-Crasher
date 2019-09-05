@@ -9,6 +9,8 @@ This is not intended for distribution or any use other than personal and is mear
 
 USE AT YOUR OWN RISK.
 
+May cause chrome to become extremelly laggy when scrolling @aXises
+
 ## Installation
 Via NuGet:
 
